@@ -1,12 +1,17 @@
 package com.leandro1995.retoandroid.adapter
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.leandro1995.retoandroid.R
+import com.leandro1995.retoandroid.activity.DetailProductActivity
 
-class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductHolder>() {
+class ProductAdapter constructor(private val activity: Activity) :
+    RecyclerView.Adapter<ProductAdapter.ProductHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductHolder {
 
@@ -24,5 +29,16 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductHolder>() {
         return 10
     }
 
-    class ProductHolder constructor(view: View) : RecyclerView.ViewHolder(view)
+    inner class ProductHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
+
+        private val productCard: CardView = view.findViewById(R.id.productCard)
+
+        init {
+
+            productCard.setOnClickListener {
+
+                activity.startActivity(Intent(activity, DetailProductActivity::class.java))
+            }
+        }
+    }
 }
