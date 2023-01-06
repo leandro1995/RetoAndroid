@@ -30,7 +30,7 @@ object LoginConfig {
 
                     is InternetIntent.Progress -> {
 
-                        loginIntentCallBack.progress(id = loginIntent.internetIntent.progress.id)
+                        loginIntentCallBack.progress(progress = loginIntent.internetIntent.progress)
                     }
                 }
             }

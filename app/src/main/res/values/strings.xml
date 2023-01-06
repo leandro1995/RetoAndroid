@@ -2,6 +2,12 @@
 
     <string name="app_name">RetoAndroid</string>
 
+    <!-- Text title -->
+    <string name="count_soles_text">Cuenta soles</string>
+    <string name="count_dollar_text">Cuenta dolares</string>
+    <string name="symbol_soles_text">S/</string>
+    <string name="symbol_dollar_text">US$</string>
+
     <!-- Text Hint -->
     <string name="document_hint">DNI</string>
     <string name="password_hint">Contraseña</string>

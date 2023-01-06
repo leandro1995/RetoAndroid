@@ -1,20 +1,21 @@
 package com.leandro1995.retoandroid.retrofit.service
 
 import com.leandro1995.retoandroid.retrofit.config.RetrofitConfig
+import com.leandro1995.retoandroid.retrofit.model.ProductResponse
 
-class PostService {
+class GetService {
 
     companion object {
 
-        suspend fun login(response: () -> Unit) {
+        suspend fun productList(response: (productResponseArrayList: ArrayList<ProductResponse>) -> Unit) {
 
             try {
 
-                RetrofitConfig.postApi.login().let {
+                RetrofitConfig.getApi.productArrayList().let {
 
                     if (it.isSuccessful) {
 
-                        response()
+                        response(it.body()!!)
                     }
                 }
             } catch (_: Exception) {

@@ -51,14 +51,14 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/titleText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Cuenta soles" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/amountText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="S/10" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 

@@ -8,5 +8,8 @@ class Setting {
         const val ERROR_SERVICE_514 = 514
 
         const val NAME = "name"
+        const val TYPE = "type"
+        const val AMOUNT = "amount"
+        const val ACCOUNT_NUMBER = "account_number"
     }
 }
