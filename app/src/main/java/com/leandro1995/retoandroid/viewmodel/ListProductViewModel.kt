@@ -13,7 +13,8 @@ class ListProductViewModel : ViewModel() {
     companion object {
 
         const val PRODUCT_ARRAY_LIST = 0
-        const val PRODUCT_ARRAY_LIST_SERVICE = 1
+        const val PRODUCT_ARRAY_LIST_SWIPE = 1
+        const val PRODUCT_ARRAY_LIST_SERVICE = 2
     }
 
     val listProductMutableStateFlow: MutableStateFlow<ListProductIntent> by lazy {
@@ -29,6 +30,10 @@ class ListProductViewModel : ViewModel() {
             PRODUCT_ARRAY_LIST -> {
 
                 productArrayList()
+            }
+            PRODUCT_ARRAY_LIST_SWIPE -> {
+
+                productArrayListSwipe()
             }
         }
     }
@@ -56,6 +61,19 @@ class ListProductViewModel : ViewModel() {
                     progress = Progress(
                         id = PRODUCT_ARRAY_LIST_SERVICE,
                         isType = true
+                    )
+                )
+            )
+    }
+
+    private fun productArrayListSwipe() {
+
+        listProductMutableStateFlow.value =
+            ListProductIntent.InternetStatus(
+                InternetIntent.Progress(
+                    progress = Progress(
+                        id = PRODUCT_ARRAY_LIST_SERVICE,
+                        isType = false
                     )
                 )
             )

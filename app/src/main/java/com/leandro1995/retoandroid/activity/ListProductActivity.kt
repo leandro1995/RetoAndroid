@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.leandro1995.retoandroid.R
 import com.leandro1995.retoandroid.adapter.ProductAdapter
 import com.leandro1995.retoandroid.config.callback.intent.ListProductIntentCallBack
@@ -70,6 +71,11 @@ class ListProductActivity : AppCompatActivity(), ListProductIntentCallBack {
                 adapter = productAdapter
             }
 
+            productSwipe.setOnRefreshListener {
+
+                listProductViewModel!!.onClick.invoke(ListProductViewModel.PRODUCT_ARRAY_LIST_SWIPE)
+            }
+
             listProductViewModel!!.onClick.invoke(ListProductViewModel.PRODUCT_ARRAY_LIST)
         }
     }
@@ -78,6 +84,7 @@ class ListProductActivity : AppCompatActivity(), ListProductIntentCallBack {
     override fun productArrayList(productArrayList: ArrayList<Product>) {
 
         listProductBinding.progressBar2.visibility = View.GONE
+        listProductBinding.productSwipe.isRefreshing = false
 
         productList.clear()
         productList.addAll(productArrayList)
