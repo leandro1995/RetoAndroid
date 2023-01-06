@@ -1,7 +1,8 @@
-package com.leandro1995.retoandroid
+package com.leandro1995.retoandroid.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.leandro1995.retoandroid.R
 
 class ListProductActivity : AppCompatActivity() {
 
