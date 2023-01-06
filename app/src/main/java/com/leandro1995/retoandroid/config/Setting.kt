@@ -14,5 +14,7 @@ class Setting {
                 Pair(MESSAGE_NAME, R.string.message_login_verify_user),
                 Pair(MESSAGE_PASSWORD, R.string.message_login_verify_user)
             )
+
+        const val PRODUCT_PUT_EXTRA = "product_put_extra"
     }
 }

@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.leandro1995.retoandroid.R
 import com.leandro1995.retoandroid.activity.DetailProductActivity
+import com.leandro1995.retoandroid.config.Setting
 import com.leandro1995.retoandroid.model.entitie.Product
 import com.leandro1995.retoandroid.util.DesignUtil
 
@@ -52,7 +53,10 @@ class ProductAdapter constructor(
 
             productCard.setOnClickListener {
 
-                activity.startActivity(Intent(activity, DetailProductActivity::class.java))
+                activity.startActivity(Intent(activity, DetailProductActivity::class.java).apply {
+
+                    putExtra(Setting.PRODUCT_PUT_EXTRA, productArrayList[adapterPosition])
+                })
             }
         }
     }
