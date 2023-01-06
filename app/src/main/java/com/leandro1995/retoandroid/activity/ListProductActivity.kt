@@ -15,7 +15,7 @@ class ListProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_product)
 
-        productAdapter = ProductAdapter()
+        productAdapter = ProductAdapter(activity = this)
 
         findViewById<RecyclerView>(R.id.productRecycler).apply {
 
