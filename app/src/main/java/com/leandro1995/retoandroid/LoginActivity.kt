@@ -1,20 +1,49 @@
 package com.leandro1995.retoandroid
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import com.leandro1995.retoandroid.activity.ListProductActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import com.leandro1995.retoandroid.config.callback.intent.LoginIntentCallBack
+import com.leandro1995.retoandroid.databinding.ActivityLoginBinding
+import com.leandro1995.retoandroid.extension.lifecycleScopeCreate
+import com.leandro1995.retoandroid.util.MessageUtil
+import com.leandro1995.retoandroid.viewmodel.LoginViewModel
+import com.leandro1995.retoandroid.viewmodel.config.LoginConfig
+import kotlinx.coroutines.flow.collect
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
+
+    private lateinit var loginBinding: ActivityLoginBinding
+
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
 
-        findViewById<Button>(R.id.button).setOnClickListener {
+        LoginConfig.instance(loginIntentCallBack = this)
 
-            startActivity(Intent(this, ListProductActivity::class.java))
-        }
+        loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+
+        loginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        loginBinding.loginViewModel = loginViewModel
+
+        observer()
+    }
+
+    private fun observer() {
+
+        lifecycleScopeCreate(activity = this, method = {
+
+            loginViewModel.loginMutableStateFlow.collect { loginIntent ->
+
+                LoginConfig.selectLoginIntent(loginIntent = loginIntent)
+            }
+        })
+    }
+
+    override fun message(idMessage: Int) {
+
+        MessageUtil.message(activity = this, idMessage = idMessage)
     }
 }

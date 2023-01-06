@@ -8,6 +8,7 @@
 
     <!-- Text Button -->
     <string name="get_into_text_button">Ingresar</string>
+    <string name="accept_text_button">Aceptar</string>
 
     <!-- Text Message -->
     <string name="message_login_verify_user">Usuario y/o contraseña incorrectos</string>
