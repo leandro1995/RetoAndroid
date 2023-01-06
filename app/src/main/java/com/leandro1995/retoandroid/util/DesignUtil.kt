@@ -1,5 +1,7 @@
 package com.leandro1995.retoandroid.util
 
+import android.view.View
+import android.widget.ProgressBar
 import com.leandro1995.retoandroid.R
 
 class DesignUtil {
@@ -20,6 +22,19 @@ class DesignUtil {
         } else {
 
             R.string.symbol_dollar_text
+        }
+
+        fun visibleProgress(isType: Boolean, visible: (status: Int) -> Unit) {
+
+            visible(
+                if (isType) {
+
+                    View.VISIBLE
+                } else {
+
+                    View.GONE
+                }
+            )
         }
     }
 }

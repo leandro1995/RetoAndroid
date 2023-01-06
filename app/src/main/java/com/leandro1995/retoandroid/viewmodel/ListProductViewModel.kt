@@ -51,6 +51,13 @@ class ListProductViewModel : ViewModel() {
     private fun productArrayList() {
 
         listProductMutableStateFlow.value =
-            ListProductIntent.InternetStatus(InternetIntent.Progress(progress = Progress(id = PRODUCT_ARRAY_LIST_SERVICE)))
+            ListProductIntent.InternetStatus(
+                InternetIntent.Progress(
+                    progress = Progress(
+                        id = PRODUCT_ARRAY_LIST_SERVICE,
+                        isType = true
+                    )
+                )
+            )
     }
 }

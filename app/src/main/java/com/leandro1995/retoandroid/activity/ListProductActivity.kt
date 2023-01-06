@@ -14,6 +14,7 @@ import com.leandro1995.retoandroid.databinding.ActivityListProductBinding
 import com.leandro1995.retoandroid.extension.lifecycleScopeCreate
 import com.leandro1995.retoandroid.model.desing.Progress
 import com.leandro1995.retoandroid.model.entitie.Product
+import com.leandro1995.retoandroid.util.DesignUtil
 import com.leandro1995.retoandroid.viewmodel.ListProductViewModel
 import com.leandro1995.retoandroid.viewmodel.config.ListProductConfig
 import kotlinx.coroutines.CoroutineScope
@@ -76,6 +77,8 @@ class ListProductActivity : AppCompatActivity(), ListProductIntentCallBack {
     @SuppressLint("NotifyDataSetChanged")
     override fun productArrayList(productArrayList: ArrayList<Product>) {
 
+        listProductBinding.progressBar2.visibility = View.GONE
+
         productList.clear()
         productList.addAll(productArrayList)
 
@@ -84,7 +87,10 @@ class ListProductActivity : AppCompatActivity(), ListProductIntentCallBack {
 
     override fun progress(progress: Progress) {
 
-        //listProductBinding.progressBar.visibility = View.VISIBLE
+        DesignUtil.visibleProgress(isType = progress.isType, visible = {
+
+            listProductBinding.progressBar2.visibility = it
+        })
 
         CoroutineScope(Dispatchers.Main).launch {
 
