@@ -12,4 +12,11 @@
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 
+    <!-- Style Component -->
+    <style name="Button">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen_65</item>
+    </style>
+
 </resources>

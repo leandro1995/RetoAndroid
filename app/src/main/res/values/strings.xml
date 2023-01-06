@@ -1,3 +1,11 @@
 <resources>
+
     <string name="app_name">RetoAndroid</string>
+
+    <!-- Text Hint -->
+    <string name="document_hint">DNI</string>
+    <string name="password_hint">Contraseña</string>
+
+    <!-- Text Button -->
+    <string name="get_into_text_button">Ingresar</string>
 </resources>
