@@ -1,19 +1,23 @@
-package com.leandro1995.retoandroid.model
+package com.leandro1995.retoandroid.model.entitie
 
-class User constructor(private val document: String = "", private val password: String = "") {
+import com.leandro1995.retoandroid.config.Setting
+
+class User constructor(var document: String = "", var password: String = "") {
 
     fun isVerifyDocument(): Int {
 
         return when {
 
             isDocument() -> {
-                0
+
+                Setting.MESSAGE_NAME
             }
             isPassword() -> {
-                1
+
+                Setting.MESSAGE_PASSWORD
             }
             else -> {
-                2
+                0
             }
         }
     }
