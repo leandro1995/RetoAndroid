@@ -1,16 +1,21 @@
 package com.leandro1995.retoandroid
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.leandro1995.retoandroid.activity.ListProductActivity
 import com.leandro1995.retoandroid.config.callback.intent.LoginIntentCallBack
 import com.leandro1995.retoandroid.databinding.ActivityLoginBinding
 import com.leandro1995.retoandroid.extension.lifecycleScopeCreate
 import com.leandro1995.retoandroid.util.MessageUtil
 import com.leandro1995.retoandroid.viewmodel.LoginViewModel
 import com.leandro1995.retoandroid.viewmodel.config.LoginConfig
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
 
@@ -45,5 +50,21 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
     override fun message(idMessage: Int) {
 
         MessageUtil.message(activity = this, idMessage = idMessage)
+    }
+
+    override fun listProductActivity() {
+
+        startActivity(Intent(this, ListProductActivity::class.java))
+        finishAffinity()
+    }
+
+    override fun progress(id: Int) {
+
+        loginBinding.progressBar.visibility = View.VISIBLE
+
+        CoroutineScope(Dispatchers.Main).launch {
+
+            loginViewModel.service(id = id)
+        }
     }
 }

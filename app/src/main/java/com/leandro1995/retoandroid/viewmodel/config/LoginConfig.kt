@@ -1,6 +1,7 @@
 package com.leandro1995.retoandroid.viewmodel.config
 
 import com.leandro1995.retoandroid.config.callback.intent.LoginIntentCallBack
+import com.leandro1995.retoandroid.config.intent.InternetIntent
 import com.leandro1995.retoandroid.intent.LoginIntent
 
 object LoginConfig {
@@ -22,6 +23,20 @@ object LoginConfig {
             is LoginIntent.WarningMessage -> {
 
                 loginIntentCallBack.message(idMessage = loginIntent.message.idMessage()!!)
+            }
+            is LoginIntent.InternetStatus -> {
+
+                when (loginIntent.internetIntent) {
+
+                    is InternetIntent.Progress -> {
+
+                        loginIntentCallBack.progress(id = loginIntent.internetIntent.progress.id)
+                    }
+                }
+            }
+            LoginIntent.ListProductActivity -> {
+
+                loginIntentCallBack.listProductActivity()
             }
         }
     }

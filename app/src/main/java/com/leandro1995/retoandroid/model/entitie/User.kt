@@ -1,6 +1,7 @@
 package com.leandro1995.retoandroid.model.entitie
 
 import com.leandro1995.retoandroid.config.Setting
+import com.leandro1995.retoandroid.retrofit.service.PostService
 
 class User constructor(var document: String = "", var password: String = "") {
 
@@ -21,6 +22,10 @@ class User constructor(var document: String = "", var password: String = "") {
             }
         }
     }
+
+    suspend fun login(response: () -> Unit) =
+        PostService.login(response)
+
 
     private fun isDocument() = document.isEmpty()
 

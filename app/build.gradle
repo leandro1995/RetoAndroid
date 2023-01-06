@@ -26,6 +26,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+
+            buildConfigField "String", "BASE_URL", '"https://demo9846476.mockable.io/"'
+        }
     }
 
     compileOptions {
