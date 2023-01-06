@@ -10,6 +10,7 @@ import com.leandro1995.retoandroid.activity.ListProductActivity
 import com.leandro1995.retoandroid.config.callback.intent.LoginIntentCallBack
 import com.leandro1995.retoandroid.databinding.ActivityLoginBinding
 import com.leandro1995.retoandroid.extension.lifecycleScopeCreate
+import com.leandro1995.retoandroid.model.desing.Progress
 import com.leandro1995.retoandroid.util.MessageUtil
 import com.leandro1995.retoandroid.viewmodel.LoginViewModel
 import com.leandro1995.retoandroid.viewmodel.config.LoginConfig
@@ -58,13 +59,13 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         finishAffinity()
     }
 
-    override fun progress(id: Int) {
+    override fun progress(progress: Progress) {
 
         loginBinding.progressBar.visibility = View.VISIBLE
 
         CoroutineScope(Dispatchers.Main).launch {
 
-            loginViewModel.service(id = id)
+            loginViewModel.service(id = progress.id)
         }
     }
 }
