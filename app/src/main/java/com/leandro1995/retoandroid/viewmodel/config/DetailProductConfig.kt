@@ -35,6 +35,10 @@ object DetailProductConfig {
 
                 detailProductIntentCallBack.movementProductArrayList(movementProductArrayList = detailProductIntent.movementProductArrayList)
             }
+            is DetailProductIntent.Copy -> {
+
+                detailProductIntentCallBack.copy(accountNumber = detailProductIntent.accountNumber)
+            }
         }
     }
 }

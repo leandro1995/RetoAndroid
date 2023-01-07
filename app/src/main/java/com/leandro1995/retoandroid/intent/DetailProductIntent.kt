@@ -12,4 +12,6 @@ sealed class DetailProductIntent {
 
     data class MovementProductArrayList constructor(val movementProductArrayList: ArrayList<MovementProduct>) :
         DetailProductIntent()
+
+    data class Copy constructor(val accountNumber: String) : DetailProductIntent()
 }

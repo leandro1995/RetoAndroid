@@ -1,8 +1,12 @@
 package com.leandro1995.retoandroid.activity
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -87,7 +91,7 @@ class DetailProductActivity : AppCompatActivity(), DetailProductIntentCallBack {
 
     @SuppressLint("NotifyDataSetChanged")
     override fun movementProductArrayList(movementProductArrayList: ArrayList<MovementProduct>) {
-        
+
         detailProductBinding.let {
 
             it.progressBar3.visibility = View.GONE
@@ -98,6 +102,16 @@ class DetailProductActivity : AppCompatActivity(), DetailProductIntentCallBack {
         this.movementProductArrayList.addAll(movementProductArrayList)
 
         movementProductAdapter.notifyDataSetChanged()
+    }
+
+    override fun copy(accountNumber: String) {
+
+        val clipBoardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData = ClipData.newPlainText(getText(R.string.app_name), accountNumber)
+        clipBoardManager.setPrimaryClip(clipData)
+
+        Toast.makeText(this, getString(R.string.copy_account_number_message), Toast.LENGTH_SHORT)
+            .show()
     }
 
     override fun progress(progress: Progress) {

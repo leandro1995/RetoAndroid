@@ -13,7 +13,8 @@ class DetailProductViewModel : ViewModel() {
     companion object {
 
         const val MOVEMENT_PRODUCT = 0
-        const val MOVEMENT_PRODUCT_SERVICE = 1
+        const val COPY = 1
+        const val MOVEMENT_PRODUCT_SERVICE = 2
     }
 
     val detailProductMutableStateFlow: MutableStateFlow<DetailProductIntent> by lazy {
@@ -29,6 +30,10 @@ class DetailProductViewModel : ViewModel() {
             MOVEMENT_PRODUCT -> {
 
                 movementProduct()
+            }
+            COPY -> {
+
+                copy()
             }
         }
     }
@@ -52,5 +57,11 @@ class DetailProductViewModel : ViewModel() {
 
         detailProductMutableStateFlow.value =
             DetailProductIntent.InternetStatus(InternetIntent.Progress(progress = Progress(id = MOVEMENT_PRODUCT_SERVICE)))
+    }
+
+    private fun copy() {
+
+        detailProductMutableStateFlow.value =
+            DetailProductIntent.Copy(accountNumber = product.accountNumber)
     }
 }

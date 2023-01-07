@@ -8,4 +8,6 @@ interface DetailProductIntentCallBack : InternetCallBack {
     fun initView()
 
     fun movementProductArrayList(movementProductArrayList: ArrayList<MovementProduct>)
+
+    fun copy(accountNumber: String)
 }
