@@ -3,6 +3,10 @@
     <string name="app_name">RetoAndroid</string>
 
     <!-- Text title -->
+    <string name="product_title_text">Productos</string>
+    <string name="consult_title_text">Consultas</string>
+
+    <!-- Text title -->
     <string name="count_soles_text">Cuenta soles</string>
     <string name="count_dollar_text">Cuenta dolares</string>
     <string name="symbol_soles_text">S/</string>

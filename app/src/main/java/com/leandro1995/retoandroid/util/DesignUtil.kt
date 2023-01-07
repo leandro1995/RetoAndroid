@@ -3,14 +3,23 @@ package com.leandro1995.retoandroid.util
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.View
-import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.leandro1995.retoandroid.R
 import com.leandro1995.retoandroid.databinding.ActivityDetailProductBinding
-import com.leandro1995.retoandroid.model.entitie.Product
 
 class DesignUtil {
 
     companion object {
+
+        fun toolbar(activity: Activity, toolbar: Toolbar, title: String) {
+
+            (activity as AppCompatActivity).apply {
+
+                setSupportActionBar(toolbar)
+                supportActionBar!!.title = title
+            }
+        }
 
         fun titleCount(isType: Boolean) = if (isType) {
 

@@ -63,6 +63,12 @@ class ListProductActivity : AppCompatActivity(), ListProductIntentCallBack {
 
         listProductBinding.apply {
 
+            DesignUtil.toolbar(
+                activity = this@ListProductActivity,
+                toolbar = includeAppBar.toolbar,
+                title = getString(R.string.product_title_text)
+            )
+
             productRecycler.apply {
 
                 layoutManager = LinearLayoutManager(this@ListProductActivity).apply {

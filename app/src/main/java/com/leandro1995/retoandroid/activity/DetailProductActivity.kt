@@ -78,6 +78,12 @@ class DetailProductActivity : AppCompatActivity(), DetailProductIntentCallBack {
 
         detailProductBinding.apply {
 
+            DesignUtil.toolbar(
+                activity = this@DetailProductActivity,
+                toolbar = includeAppBar.toolbar,
+                title = getString(R.string.consult_title_text)
+            )
+
             movementProductRecycler.apply {
 
                 layoutManager = LinearLayoutManager(this@DetailProductActivity).apply {
