@@ -12,20 +12,28 @@ class User constructor(var document: String = "", var password: String = "") {
 
             isDocument() -> {
 
-                Setting.MESSAGE_NAME
+                Setting.MESSAGE_DOCUMENT
             }
             isPassword() -> {
 
                 Setting.MESSAGE_PASSWORD
             }
+            document != "77210641" -> {
+
+                Setting.MESSAGE_DOCUMENT
+            }
+            password != "12345678Mn" -> {
+
+                Setting.MESSAGE_PASSWORD
+            }
             else -> {
+
                 0
             }
         }
     }
 
-    suspend fun login(response: () -> Unit) =
-        PostService.login(response)
+    suspend fun login(response: () -> Unit) = PostService.login(response)
 
 
     suspend fun productList(response: (productArrayList: ArrayList<Product>) -> Unit) {

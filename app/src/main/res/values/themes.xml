@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="Theme.RetoAndroid" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.RetoAndroid" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -38,5 +38,14 @@
     <style name="ButtonRounded" parent="Button">
         <item name="cornerRadius">@dimen/dimen_15</item>
     </style>
+
+    <style name="Theme.RetoAndroid.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.RetoAndroid.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.RetoAndroid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

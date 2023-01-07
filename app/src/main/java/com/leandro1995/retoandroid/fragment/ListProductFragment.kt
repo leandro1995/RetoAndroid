@@ -1,56 +1,65 @@
-package com.leandro1995.retoandroid.activity
+package com.leandro1995.retoandroid.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.MotionEvent
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leandro1995.retoandroid.R
 import com.leandro1995.retoandroid.adapter.ProductAdapter
-import com.leandro1995.retoandroid.background.TimeOutBackground
 import com.leandro1995.retoandroid.config.callback.intent.ListProductIntentCallBack
-import com.leandro1995.retoandroid.databinding.ActivityListProductBinding
+import com.leandro1995.retoandroid.databinding.FragmentListProductBinding
 import com.leandro1995.retoandroid.extension.lifecycleScopeCreate
 import com.leandro1995.retoandroid.model.desing.Progress
 import com.leandro1995.retoandroid.model.entitie.Product
 import com.leandro1995.retoandroid.util.DesignUtil
+import com.leandro1995.retoandroid.util.ViewModelUtil
 import com.leandro1995.retoandroid.viewmodel.ListProductViewModel
 import com.leandro1995.retoandroid.viewmodel.config.ListProductConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ListProductActivity : AppCompatActivity(), ListProductIntentCallBack {
+class ListProductFragment : Fragment(), ListProductIntentCallBack {
 
-    private lateinit var listProductBinding: ActivityListProductBinding
+    private lateinit var listProductBinding: FragmentListProductBinding
 
-    private lateinit var listProductViewModel: ListProductViewModel
+    private var listProductViewModel: ListProductViewModel? = null
 
     private lateinit var productAdapter: ProductAdapter
 
     private val productList = arrayListOf<Product>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
-        ListProductConfig.instance(listProductIntentCallBack = this)
+        ViewModelUtil.viewModel(listProductViewModel = listProductViewModel) {
 
-        listProductViewModel = ViewModelProvider(this)[ListProductViewModel::class.java]
+            ListProductConfig.instance(listProductIntentCallBack = this)
 
-        listProductBinding = DataBindingUtil.setContentView(this, R.layout.activity_list_product)
-        listProductBinding.listProductViewModel = listProductViewModel
+            listProductViewModel = ViewModelProvider(this)[ListProductViewModel::class.java]
 
-        observer()
+            listProductBinding =
+                DataBindingUtil.inflate(inflater, R.layout.fragment_list_product, container, false)
+            listProductBinding.listProductViewModel = listProductViewModel
+
+            observer()
+        }
+
+        return listProductBinding.root
     }
 
     private fun observer() {
 
-        lifecycleScopeCreate(activity = this, method = {
+        lifecycleScopeCreate(activity = requireActivity(), method = {
 
-            listProductViewModel.listProductMutableStateFlow.collect { listProductIntent ->
+            listProductViewModel!!.listProductMutableStateFlow.collect { listProductIntent ->
 
                 ListProductConfig.selectListProductIntent(listProductIntent = listProductIntent)
             }
@@ -59,13 +68,20 @@ class ListProductActivity : AppCompatActivity(), ListProductIntentCallBack {
 
     override fun initView() {
 
-        productAdapter = ProductAdapter(activity = this, productArrayList = productList)
+        productAdapter =
+            ProductAdapter(activity = requireActivity(), productArrayList = productList)
 
         listProductBinding.apply {
 
+            DesignUtil.toolbar(
+                activity = requireActivity(),
+                toolbar = includeAppBar.toolbar,
+                title = getString(R.string.product_title_text)
+            )
+
             productRecycler.apply {
 
-                layoutManager = LinearLayoutManager(this@ListProductActivity).apply {
+                layoutManager = LinearLayoutManager(requireActivity()).apply {
                     orientation = LinearLayoutManager.VERTICAL
                 }
 
@@ -102,14 +118,7 @@ class ListProductActivity : AppCompatActivity(), ListProductIntentCallBack {
 
         CoroutineScope(Dispatchers.Main).launch {
 
-            listProductViewModel.service(id = progress.id)
+            listProductViewModel!!.service(id = progress.id)
         }
-    }
-
-    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-
-        TimeOutBackground.isTimeOut = true
-
-        return super.dispatchTouchEvent(event)
     }
 }
