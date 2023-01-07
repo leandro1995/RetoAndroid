@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/list_product_navigation">
+
+    <fragment
+        android:id="@+id/list_product_navigation"
+        android:name="com.leandro1995.retoandroid.fragment.ListProductFragment"
+        android:label="fragment_list_product"
+        tools:layout="@layout/fragment_list_product" />
+
+    <fragment
+        android:id="@+id/operation_navigation"
+        android:name="com.leandro1995.retoandroid.fragment.OperationFragment"
+        android:label="fragment_operation"
+        tools:layout="@layout/fragment_operation" />
+
+</navigation>
