@@ -33,7 +33,7 @@ object TimeOutBackground {
 
         while (true) {
 
-            delay(TimeUnit.SECONDS.toMillis(TIME_OUT))
+            delay(TimeUnit.MINUTES.toMillis(TIME_OUT))
 
             if (!isTimeOut) {
 
@@ -45,5 +45,4 @@ object TimeOutBackground {
             }
         }
     }
-
 }
