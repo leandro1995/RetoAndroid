@@ -5,7 +5,6 @@ import com.leandro1995.retoandroid.config.intent.InternetIntent
 import com.leandro1995.retoandroid.intent.DetailProductIntent
 import com.leandro1995.retoandroid.model.desing.Progress
 import com.leandro1995.retoandroid.model.entitie.Product
-import com.leandro1995.retoandroid.retrofit.model.MovementProductResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class DetailProductViewModel : ViewModel() {

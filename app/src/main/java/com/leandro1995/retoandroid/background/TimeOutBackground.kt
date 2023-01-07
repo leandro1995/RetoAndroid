@@ -3,7 +3,7 @@ package com.leandro1995.retoandroid.background
 import android.content.Context
 import android.content.Intent
 import com.leandro1995.retoandroid.LoginActivity
-import com.leandro1995.retoandroid.config.callback.intent.TimeOutBackgroundCallBack
+import com.leandro1995.retoandroid.config.callback.background.TimeOutBackgroundCallBack
 import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
 

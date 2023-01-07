@@ -1,4 +1,4 @@
-package com.leandro1995.retoandroid.config.callback.intent
+package com.leandro1995.retoandroid.config.callback.background
 
 interface TimeOutBackgroundCallBack {
 

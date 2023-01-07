@@ -1,6 +1,5 @@
 package com.leandro1995.retoandroid.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.leandro1995.retoandroid.config.intent.InternetIntent
 import com.leandro1995.retoandroid.intent.ListProductIntent
