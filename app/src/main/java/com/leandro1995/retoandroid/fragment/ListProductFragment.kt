@@ -2,11 +2,11 @@ package com.leandro1995.retoandroid.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leandro1995.retoandroid.R
@@ -17,6 +17,7 @@ import com.leandro1995.retoandroid.extension.lifecycleScopeCreate
 import com.leandro1995.retoandroid.model.desing.Progress
 import com.leandro1995.retoandroid.model.entitie.Product
 import com.leandro1995.retoandroid.util.DesignUtil
+import com.leandro1995.retoandroid.util.ViewModelUtil
 import com.leandro1995.retoandroid.viewmodel.ListProductViewModel
 import com.leandro1995.retoandroid.viewmodel.config.ListProductConfig
 import kotlinx.coroutines.CoroutineScope
@@ -27,7 +28,7 @@ class ListProductFragment : Fragment(), ListProductIntentCallBack {
 
     private lateinit var listProductBinding: FragmentListProductBinding
 
-    private lateinit var listProductViewModel: ListProductViewModel
+    private var listProductViewModel: ListProductViewModel? = null
 
     private lateinit var productAdapter: ProductAdapter
 
@@ -38,15 +39,18 @@ class ListProductFragment : Fragment(), ListProductIntentCallBack {
         savedInstanceState: Bundle?
     ): View {
 
-        ListProductConfig.instance(listProductIntentCallBack = this)
+        ViewModelUtil.viewModel(listProductViewModel = listProductViewModel) {
 
-        listProductViewModel = ViewModelProvider(this)[ListProductViewModel::class.java]
+            ListProductConfig.instance(listProductIntentCallBack = this)
 
-        listProductBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_list_product, container, false)
-        listProductBinding.listProductViewModel = listProductViewModel
+            listProductViewModel = ViewModelProvider(this)[ListProductViewModel::class.java]
 
-        observer()
+            listProductBinding =
+                DataBindingUtil.inflate(inflater, R.layout.fragment_list_product, container, false)
+            listProductBinding.listProductViewModel = listProductViewModel
+
+            observer()
+        }
 
         return listProductBinding.root
     }
@@ -55,7 +59,7 @@ class ListProductFragment : Fragment(), ListProductIntentCallBack {
 
         lifecycleScopeCreate(activity = requireActivity(), method = {
 
-            listProductViewModel.listProductMutableStateFlow.collect { listProductIntent ->
+            listProductViewModel!!.listProductMutableStateFlow.collect { listProductIntent ->
 
                 ListProductConfig.selectListProductIntent(listProductIntent = listProductIntent)
             }
@@ -114,7 +118,7 @@ class ListProductFragment : Fragment(), ListProductIntentCallBack {
 
         CoroutineScope(Dispatchers.Main).launch {
 
-            listProductViewModel.service(id = progress.id)
+            listProductViewModel!!.service(id = progress.id)
         }
     }
 }
