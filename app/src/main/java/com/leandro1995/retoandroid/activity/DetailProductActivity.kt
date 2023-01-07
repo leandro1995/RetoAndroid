@@ -2,6 +2,7 @@ package com.leandro1995.retoandroid.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -86,6 +87,12 @@ class DetailProductActivity : AppCompatActivity(), DetailProductIntentCallBack {
 
     @SuppressLint("NotifyDataSetChanged")
     override fun movementProductArrayList(movementProductArrayList: ArrayList<MovementProduct>) {
+        
+        detailProductBinding.let {
+
+            it.progressBar3.visibility = View.GONE
+            it.motionProductLinear.visibility = View.VISIBLE
+        }
 
         this.movementProductArrayList.clear()
         this.movementProductArrayList.addAll(movementProductArrayList)

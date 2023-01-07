@@ -10,6 +10,7 @@
     <string name="number_account_text">Número de cuenta</string>
     <string name="discount_minor_text">-</string>
     <string name="discount_more_text">+</string>
+    <string name="motion_text">Movimientos</string>
 
     <!-- Text Hint -->
     <string name="document_hint">DNI</string>
