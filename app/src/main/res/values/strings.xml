@@ -7,6 +7,10 @@
     <string name="count_dollar_text">Cuenta dolares</string>
     <string name="symbol_soles_text">S/</string>
     <string name="symbol_dollar_text">US$</string>
+    <string name="number_account_text">Número de cuenta</string>
+    <string name="discount_minor_text">-</string>
+    <string name="discount_more_text">+</string>
+    <string name="motion_text">Movimientos</string>
 
     <!-- Text Hint -->
     <string name="document_hint">DNI</string>
@@ -15,7 +19,9 @@
     <!-- Text Button -->
     <string name="get_into_text_button">Ingresar</string>
     <string name="accept_text_button">Aceptar</string>
+    <string name="copy_text_button">Copiar</string>
 
     <!-- Text Message -->
     <string name="message_login_verify_user">Usuario y/o contraseña incorrectos</string>
+    <string name="copy_account_number_message">Se copio el numero de cuenta</string>
 </resources>

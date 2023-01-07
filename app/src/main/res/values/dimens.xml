@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Text -->
+    <dimen name="sp_18">18sp</dimen>
+    <dimen name="sp_19">19sp</dimen>
+
     <!-- Dimens -->
     <dimen name="dimen_0">0dp</dimen>
     <dimen name="dimen_5">5dp</dimen>

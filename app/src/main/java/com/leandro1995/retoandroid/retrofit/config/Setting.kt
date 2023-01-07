@@ -11,5 +11,7 @@ class Setting {
         const val TYPE = "type"
         const val AMOUNT = "amount"
         const val ACCOUNT_NUMBER = "account_number"
+        const val DATE = "date"
+        const val IS_DISCOUNT = "isDiscount"
     }
 }
