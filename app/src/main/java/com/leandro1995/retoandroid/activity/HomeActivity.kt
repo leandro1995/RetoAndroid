@@ -2,10 +2,12 @@ package com.leandro1995.retoandroid.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.leandro1995.retoandroid.R
+import com.leandro1995.retoandroid.background.TimeOutBackground
 import com.leandro1995.retoandroid.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -26,5 +28,12 @@ class HomeActivity : AppCompatActivity() {
 
             navView.setupWithNavController(findNavController(R.id.homeNavHost))
         }
+    }
+
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+
+        TimeOutBackground.isTimeOut = true
+
+        return super.dispatchTouchEvent(event)
     }
 }
