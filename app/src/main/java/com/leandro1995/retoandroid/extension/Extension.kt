@@ -20,7 +20,7 @@ fun lifecycleScopeCreate(activity: Activity, method: suspend () -> Unit) =
     }
 
 @Suppress("DEPRECATION")
-fun String.putExtra(activity: Activity) =
+infix fun String.putExtra(activity: Activity) =
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 
         activity.intent.extras!!.getSerializable(this, Product::class.java)

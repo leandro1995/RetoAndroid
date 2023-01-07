@@ -1,8 +1,12 @@
 package com.leandro1995.retoandroid.util
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.view.View
 import android.widget.ProgressBar
 import com.leandro1995.retoandroid.R
+import com.leandro1995.retoandroid.databinding.ActivityDetailProductBinding
+import com.leandro1995.retoandroid.model.entitie.Product
 
 class DesignUtil {
 
@@ -35,6 +39,21 @@ class DesignUtil {
                     View.GONE
                 }
             )
+        }
+
+        @SuppressLint("SetTextI18n")
+        fun viewDetailProduct(
+            activity: Activity, detailProductBinding: ActivityDetailProductBinding
+        ) {
+
+            detailProductBinding.let { detailProduct ->
+
+                detailProduct.accountText.text =
+                    activity.getText(titleCount(isType = detailProduct.detailProductViewModel!!.product.isType))
+
+                detailProduct.amountText.text =
+                    "${activity.getText(moneySymbol(isType = detailProduct.detailProductViewModel!!.product.isType))} ${detailProduct.detailProductViewModel!!.product.amount}"
+            }
         }
     }
 }

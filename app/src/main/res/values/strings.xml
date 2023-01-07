@@ -7,6 +7,7 @@
     <string name="count_dollar_text">Cuenta dolares</string>
     <string name="symbol_soles_text">S/</string>
     <string name="symbol_dollar_text">US$</string>
+    <string name="number_account_text">Número de cuenta</string>
 
     <!-- Text Hint -->
     <string name="document_hint">DNI</string>
