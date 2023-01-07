@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.paris.extensions.style
 import com.leandro1995.retoandroid.R
 import com.leandro1995.retoandroid.model.entitie.MovementProduct
 import com.leandro1995.retoandroid.util.DesignUtil
@@ -30,10 +31,15 @@ class MovementProductAdapter constructor(
 
             typeText.text = movementProductArrayList[position].type
             dateText.text = movementProductArrayList[position].date
-            amountText.text =
-                "${activity.getString(DesignUtil.discount(isType = movementProductArrayList[position].isDiscount))}${
-                    activity.getString(DesignUtil.moneySymbol(isType = movementProductArrayList[position].isTypeAccount))
-                } ${movementProductArrayList[position].amount}"
+            amountText.apply {
+
+                text =
+                    "${activity.getString(DesignUtil.discount(isType = movementProductArrayList[position].isDiscount))}${
+                        activity.getString(DesignUtil.moneySymbol(isType = movementProductArrayList[position].isTypeAccount))
+                    } ${movementProductArrayList[position].amount}"
+
+                style(DesignUtil.discountStyle(isType = movementProductArrayList[position].isDiscount))
+            }
         }
     }
 

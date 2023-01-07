@@ -36,6 +36,14 @@ class DesignUtil {
             R.string.discount_more_text
         }
 
+        fun discountStyle(isType: Boolean) = if (isType) {
+
+            R.style.Body1
+        } else {
+
+            R.style.Body2
+        }
+
         fun visibleProgress(isType: Boolean, visible: (status: Int) -> Unit) {
 
             visible(

@@ -12,6 +12,21 @@
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 
+    <!-- Style Text -->
+    <style name="Body1">
+        <item name="android:textSize">@dimen/sp_18</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="Body2">
+        <item name="android:textSize">@dimen/sp_18</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="Body3">
+        <item name="android:textSize">@dimen/sp_19</item>
+    </style>
+
     <!-- Style Component -->
     <style name="Button">
 
