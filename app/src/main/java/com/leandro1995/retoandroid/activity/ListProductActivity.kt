@@ -2,14 +2,15 @@ package com.leandro1995.retoandroid.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.leandro1995.retoandroid.R
 import com.leandro1995.retoandroid.adapter.ProductAdapter
+import com.leandro1995.retoandroid.background.TimeOutBackground
 import com.leandro1995.retoandroid.config.callback.intent.ListProductIntentCallBack
 import com.leandro1995.retoandroid.databinding.ActivityListProductBinding
 import com.leandro1995.retoandroid.extension.lifecycleScopeCreate
@@ -103,5 +104,12 @@ class ListProductActivity : AppCompatActivity(), ListProductIntentCallBack {
 
             listProductViewModel.service(id = progress.id)
         }
+    }
+
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+
+        TimeOutBackground.isTimeOut = true
+
+        return super.dispatchTouchEvent(event)
     }
 }
