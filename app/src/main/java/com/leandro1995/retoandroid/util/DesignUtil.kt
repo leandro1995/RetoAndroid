@@ -28,6 +28,14 @@ class DesignUtil {
             R.string.symbol_dollar_text
         }
 
+        fun discount(isType: Boolean) = if (isType) {
+
+            R.string.discount_minor_text
+        } else {
+
+            R.string.discount_more_text
+        }
+
         fun visibleProgress(isType: Boolean, visible: (status: Int) -> Unit) {
 
             visible(

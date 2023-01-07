@@ -8,6 +8,8 @@
     <string name="symbol_soles_text">S/</string>
     <string name="symbol_dollar_text">US$</string>
     <string name="number_account_text">Número de cuenta</string>
+    <string name="discount_minor_text">-</string>
+    <string name="discount_more_text">+</string>
 
     <!-- Text Hint -->
     <string name="document_hint">DNI</string>

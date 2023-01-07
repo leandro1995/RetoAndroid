@@ -1,11 +1,11 @@
 package com.leandro1995.retoandroid.activity
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.leandro1995.retoandroid.R
 import com.leandro1995.retoandroid.adapter.MovementProductAdapter
 import com.leandro1995.retoandroid.config.Setting
@@ -14,10 +14,13 @@ import com.leandro1995.retoandroid.databinding.ActivityDetailProductBinding
 import com.leandro1995.retoandroid.extension.lifecycleScopeCreate
 import com.leandro1995.retoandroid.extension.putExtra
 import com.leandro1995.retoandroid.model.desing.Progress
+import com.leandro1995.retoandroid.model.entitie.MovementProduct
 import com.leandro1995.retoandroid.util.DesignUtil
 import com.leandro1995.retoandroid.viewmodel.DetailProductViewModel
 import com.leandro1995.retoandroid.viewmodel.config.DetailProductConfig
-import com.leandro1995.retoandroid.viewmodel.config.LoginConfig
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DetailProductActivity : AppCompatActivity(), DetailProductIntentCallBack {
 
@@ -26,6 +29,8 @@ class DetailProductActivity : AppCompatActivity(), DetailProductIntentCallBack {
     private lateinit var detailProductViewModel: DetailProductViewModel
 
     private lateinit var movementProductAdapter: MovementProductAdapter
+
+    private val movementProductArrayList = arrayListOf<MovementProduct>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,19 +63,41 @@ class DetailProductActivity : AppCompatActivity(), DetailProductIntentCallBack {
 
         DesignUtil.viewDetailProduct(activity = this, detailProductBinding = detailProductBinding)
 
-        movementProductAdapter = MovementProductAdapter()
+        movementProductAdapter =
+            MovementProductAdapter(
+                activity = this,
+                movementProductArrayList = movementProductArrayList
+            )
 
-        detailProductBinding.movementProductRecycler.apply {
+        detailProductBinding.apply {
 
-            layoutManager = LinearLayoutManager(this@DetailProductActivity).apply {
-                orientation = LinearLayoutManager.VERTICAL
+            movementProductRecycler.apply {
+
+                layoutManager = LinearLayoutManager(this@DetailProductActivity).apply {
+                    orientation = LinearLayoutManager.VERTICAL
+                }
+
+                adapter = movementProductAdapter
             }
 
-            adapter = movementProductAdapter
+            detailProductViewModel!!.onClick.invoke(DetailProductViewModel.MOVEMENT_PRODUCT)
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun movementProductArrayList(movementProductArrayList: ArrayList<MovementProduct>) {
+
+        this.movementProductArrayList.clear()
+        this.movementProductArrayList.addAll(movementProductArrayList)
+
+        movementProductAdapter.notifyDataSetChanged()
     }
 
     override fun progress(progress: Progress) {
 
+        CoroutineScope(Dispatchers.Main).launch {
+
+            detailProductViewModel.service(id = progress.id)
+        }
     }
 }
