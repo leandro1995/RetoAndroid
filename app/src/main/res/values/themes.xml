@@ -29,9 +29,14 @@
 
     <!-- Style Component -->
     <style name="Button">
-
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dimen_65</item>
+        <item name="backgroundTint">@color/green</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ButtonRounded" parent="Button">
+        <item name="cornerRadius">@dimen/dimen_15</item>
     </style>
 
 </resources>
