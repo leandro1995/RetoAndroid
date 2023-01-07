@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leandro1995.retoandroid.R
 import com.leandro1995.retoandroid.adapter.MovementProductAdapter
+import com.leandro1995.retoandroid.background.TimeOutBackground
 import com.leandro1995.retoandroid.config.Setting
 import com.leandro1995.retoandroid.config.callback.intent.DetailProductIntentCallBack
 import com.leandro1995.retoandroid.databinding.ActivityDetailProductBinding
@@ -120,5 +122,12 @@ class DetailProductActivity : AppCompatActivity(), DetailProductIntentCallBack {
 
             detailProductViewModel.service(id = progress.id)
         }
+    }
+
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+
+        TimeOutBackground.isTimeOut = true
+
+        return super.dispatchTouchEvent(event)
     }
 }

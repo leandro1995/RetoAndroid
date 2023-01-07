@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.leandro1995.retoandroid.activity.ListProductActivity
+import com.leandro1995.retoandroid.background.TimeOutBackground
 import com.leandro1995.retoandroid.config.callback.intent.LoginIntentCallBack
 import com.leandro1995.retoandroid.databinding.ActivityLoginBinding
 import com.leandro1995.retoandroid.extension.lifecycleScopeCreate
@@ -54,6 +55,8 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
     }
 
     override fun listProductActivity() {
+
+        TimeOutBackground.start()
 
         startActivity(Intent(this, ListProductActivity::class.java))
         finishAffinity()
