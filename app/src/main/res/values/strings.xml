@@ -5,6 +5,7 @@
     <!-- Text title -->
     <string name="product_title_text">Productos</string>
     <string name="consult_title_text">Consultas</string>
+    <string name="operation_title_text">Operaciones</string>
 
     <!-- Text title -->
     <string name="count_soles_text">Cuenta soles</string>
@@ -28,4 +29,6 @@
     <!-- Text Message -->
     <string name="message_login_verify_user">Usuario y/o contraseña incorrectos</string>
     <string name="copy_account_number_message">Se copio el numero de cuenta</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
