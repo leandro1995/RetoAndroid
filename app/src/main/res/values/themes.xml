@@ -39,11 +39,6 @@
         <item name="cornerRadius">@dimen/dimen_15</item>
     </style>
 
-    <style name="Theme.RetoAndroid.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <style name="Theme.RetoAndroid.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.RetoAndroid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
